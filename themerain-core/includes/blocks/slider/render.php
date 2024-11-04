@@ -7,8 +7,8 @@ $atts = wp_parse_args( $attributes, [
 	'space'         => 30,
 	'spaceTablet'   => 30,
 	'spaceMobile'   => 30,
-	'autoplay'      => false,
 	'loop'          => false,
+	'autoplay'      => false,
 	'center'        => true,
 	'ratio'         => '16/9'
 ] );
@@ -23,8 +23,8 @@ $data .= ' data-columns-mobile="' . esc_attr( $atts['columnsMobile'] ) . '"';
 $data .= ' data-space="' . esc_attr( $atts['space'] ) . '"';
 $data .= ' data-space-tablet="' . esc_attr( $atts['spaceTablet'] ) . '"';
 $data .= ' data-space-mobile="' . esc_attr( $atts['spaceMobile'] ) . '"';
-$data .= ' data-autoplay="' . esc_attr( $atts['autoplay'] ) . '"';
 $data .= ' data-loop="' . esc_attr( $atts['loop'] ) . '"';
+$data .= ' data-autoplay="' . esc_attr( $atts['autoplay'] ) . '"';
 $data .= ' data-center="' . esc_attr( $atts['center'] ) . '"';
 
 $class = ( isset( $atts['verticalAlign'] ) ) ? [ 'class' => 'is-vertically-aligned-' . esc_attr( $atts['verticalAlign'] ) ] : [];

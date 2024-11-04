@@ -40,6 +40,10 @@
       "type": "boolean",
       "default": false
     },
+    "autoplay": {
+      "type": "boolean",
+      "default": false
+    },
     "center": {
       "type": "boolean",
       "default": true
