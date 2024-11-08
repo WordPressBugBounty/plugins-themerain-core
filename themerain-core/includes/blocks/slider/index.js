@@ -5,7 +5,7 @@ const { PanelBody, RangeControl, ToggleControl, SelectControl } = wp.components;
 
 registerBlockType("themerain/slider", {
   edit: function(props) {
-    const { attributes: { verticalAlign, images, columns, columnsTablet, columnsMobile, space, spaceTablet, spaceMobile, loop, center, ratio }, setAttributes, isSelected } = props;
+    const { attributes: { verticalAlign, images, columns, columnsTablet, columnsMobile, space, spaceTablet, spaceMobile, loop, autoplay, center, ratio }, setAttributes, isSelected } = props;
     const hasImages = !!images.length;
     const swiperContainerRef = useRef(null);
     const [swiperKey, setSwiperKey] = useState(0);
@@ -15,7 +15,7 @@ registerBlockType("themerain/slider", {
 
     useEffect(() => {
       setSwiperKey(prevKey => prevKey + 1);
-    }, [images, columns, columnsTablet, columnsMobile, space, spaceTablet, spaceMobile, loop, center]);
+    }, [images, columns, columnsTablet, columnsMobile, space, spaceTablet, spaceMobile, loop, autoplay, center]);
 
     const imagesList = images.map(image =>
       createElement("swiper-slide", { key: image.id },
@@ -112,6 +112,13 @@ registerBlockType("themerain/slider", {
             checked: loop,
             onChange: function() {
               setAttributes({ loop: !loop })
+            }
+          }),
+          createElement(ToggleControl, {
+            label: "Autoplay",
+            checked: autoplay,
+            onChange: function() {
+              setAttributes({ autoplay: !autoplay })
             }
           }),
           createElement(ToggleControl, {
