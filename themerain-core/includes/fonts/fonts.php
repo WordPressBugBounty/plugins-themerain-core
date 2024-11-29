@@ -4,12 +4,14 @@ class ThemeRain_Fonts {
 
 	public function __construct() {
 		add_filter( 'themerain_get_fonts', array( $this, 'get_all_fonts' ) );
-		add_action( 'enqueue_block_editor_assets', array( $this, 'enqueue_editor' ) );
+		add_action( 'enqueue_block_assets', array( $this, 'enqueue_editor' ) );
 		add_action( 'wp_enqueue_scripts', array( $this, 'enqueue_frontend' ), 20 );
 	}
 
 	public function enqueue_editor() {
-		$this->enqueue_frontend();
+		if ( is_admin() ) {
+			$this->enqueue_frontend();
+		}
 	}
 
 	public function enqueue_frontend() {

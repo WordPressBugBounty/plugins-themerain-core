@@ -2,7 +2,7 @@
 
 class ThemeRain_Meta_Boxes {
 
-	protected $meta_boxes;
+	protected $meta_boxes = array();
 
 	public function __construct() {
 		add_action( 'init', array( $this, 'init' ) );
@@ -22,7 +22,7 @@ class ThemeRain_Meta_Boxes {
 	public function enqueue() {
 		wp_enqueue_style( 'trc-meta-boxes', TRC_ASSETS_URL . '/css/meta-boxes.css' );
 		wp_enqueue_style( 'wp-color-picker' );
-		wp_enqueue_script( 'trc-meta-boxes', TRC_ASSETS_URL . '/js/meta-boxes.js', array( 'jquery', 'wp-color-picker', 'wp-data', 'wp-editor' ), false, true );
+		wp_enqueue_script( 'trc-meta-boxes', TRC_ASSETS_URL . '/js/meta-boxes.js', array( 'jquery', 'wp-color-picker' ), false, true );
 	}
 
 	public function add() {
