@@ -7,8 +7,8 @@ class ThemeRain_Custom_CSS {
 
 	public function __construct() {
 		add_action( 'init', array( $this, 'init' ) );
-		add_action( 'wp_enqueue_scripts', array( $this, 'print_css' ), 20 );
-		add_action( 'enqueue_block_editor_assets', array( $this, 'print_css' ) );
+		add_action( 'wp_enqueue_scripts', array( $this, 'enqueue_css' ), 20 );
+		add_filter( 'block_editor_settings_all', array( $this, 'enqueue_editor_css' ) );
 	}
 
 	public function init() {
@@ -22,6 +22,20 @@ class ThemeRain_Custom_CSS {
 
 	public function get_meta_boxes() {
 		return apply_filters( 'themerain_meta_boxes', array() );
+	}
+
+	public function enqueue_css() {
+		wp_add_inline_style( 'themerain-style', $this->print_css() );
+	}
+
+	public function enqueue_editor_css( $settings ) {
+		$settings['styles'][] = array(
+			'css'            => $this->print_css(),
+			'__unstableType' => 'theme',
+			'isGlobalStyles' => true
+		);
+
+		return $settings;
 	}
 
 	public function print_css() {
@@ -77,8 +91,7 @@ class ThemeRain_Custom_CSS {
 		$css .= $this->build_css( $customizer );
 		$css .= $this->build_css( $meta_boxes );
 
-		wp_add_inline_style( 'themerain-style', $css );
-		wp_add_inline_style( 'themerain-style-editor', $css );
+		return $css;
 	}
 
 	public function build_css( $array ) {
@@ -102,8 +115,17 @@ class ThemeRain_Custom_CSS {
 	}
 
 	public function get_the_id() {
+		$post_id = '';
+
 		if ( in_the_loop() ) {
 			$post_id = get_the_ID();
+		} elseif ( is_admin() ) {
+			$current_screen = get_current_screen();
+			$post           = get_post();
+
+			if ( 'post' === $current_screen->base ) {
+				$post_id = $post->ID;
+			}
 		} else {
 			global $wp_query;
 			$post_id = $wp_query->get_queried_object_id();
