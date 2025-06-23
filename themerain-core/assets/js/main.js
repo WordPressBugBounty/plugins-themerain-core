@@ -60,7 +60,7 @@ const themerainCore = {
   },
 
   fancyboxInit: function() {
-    const elements = document.querySelectorAll('.entry-content a[href$=".jpg"], .entry-content a[href$=".jpeg"], .entry-content a[href$=".png"], .entry-content a[href$=".webp"], .entry-content a[href$=".avif"], .entry-content a[href$=".gif"], .entry-content a[href$=".mp4"], .entry-content a[href*="youtube"], .entry-content a[href*="vimeo"]');
+    const elements = document.querySelectorAll('.entry-content a[href$=".jpg"], .entry-content a[href$=".jpeg"], .entry-content a[href$=".png"], .entry-content a[href$=".webp"], .entry-content a[href$=".avif"], .entry-content a[href$=".gif"], .entry-content a[href$=".mp4"], .entry-content a[href*="youtube.com/watch"], .entry-content a[href*="youtu.be"], .entry-content a[href*="vimeo"]');
 
     elements.forEach(e => {
       e.setAttribute('data-fancybox', 'gallery');

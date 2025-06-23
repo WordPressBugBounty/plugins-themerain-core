@@ -130,6 +130,11 @@
       };
 
       var data_type = input.attr('data-type').split(',');
+
+      if (data_type.includes('video/mp4') && !data_type.includes('video/webm')) {
+        data_type.push('video/webm');
+      }
+
       if (data_type.length > 0) {
         args.library = {type: data_type};
       }
@@ -143,7 +148,7 @@
         input.attr( 'value', attachment.id );
         if (data_type == 'image') {
           $( preview ).html( '<img src="'+ attachment.sizes.medium.url +'">' );
-        } else if (data_type == 'video/mp4') {
+        } else if (data_type.includes('video/mp4')) {
           $( preview ).html( '<div></div>' );
         }
       } );

@@ -2,7 +2,7 @@
 /**
  * Plugin Name: ThemeRain Core
  * Description: Core functionalities for ThemeRain's themes.
- * Version: 1.1.8
+ * Version: 1.1.9
  * Author: ThemeRain
  * Author URI: http://themeforest.net/user/themerain
  * License: GPLv3 or later
